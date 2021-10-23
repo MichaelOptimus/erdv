@@ -29,8 +29,7 @@ class RdvController extends Controller
     }
 
     // create a rendezvous
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
 
         //validate fields
         $attrs = $request->validate([
@@ -57,8 +56,7 @@ class RdvController extends Controller
     }
 
     // update a rendezvous
-    public function update(Request $request,$id)
-    {
+    public function update(Request $request,$id) {
 
         $rendezvous =Rdv::find($id);
         if(!$rendezvous){
@@ -93,8 +91,7 @@ class RdvController extends Controller
 
     //delete rendezvous
 
-    public function destroy($id)
-    {
+    public function destroy($id) {
         $rendezvous =Rdv::find($id);
         if(!$rendezvous){
             return response([
