@@ -17,6 +17,7 @@ class CreateSpecialitesTable extends Migration
             //$table->id();
             $table->id();
             $table->string('libelle');
+            $table->integer('clinique');
             $table->timestamps();
         });
     }

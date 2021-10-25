@@ -15,15 +15,13 @@ class CreateRdvsTable extends Migration
     {
         Schema::create('rdvs', function (Blueprint $table) {
             $table->id();
-            $table->string('motif');
-            $table->boolean('status');
-            //$table->unsignedBigInteger('user_id');
-            //$table->foreign('user_id')->references('id')->on('users');
-            //$table->unsignedBigInteger('clinique_id');
-            //$table->foreign('clinique_id')->references('id')->on('cliniques');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('clinique_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('specialite_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->text('commentaire');
+            $table->enum('status', ['attente', 'confirme', 'effectue', 'annule'])->default('attente');
+            $table->date('date_rdv')->nullable()->default(null);
+            $table->time('heure_rdv')->nullable()->default(null);
+            $table->integer('user');
+            $table->integer('clinique');
+            $table->integer('specialite');
             $table->timestamps();
         });
 
