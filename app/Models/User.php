@@ -28,8 +28,8 @@ class User extends Authenticatable
         'datenaissance',
         'email',
         'password',
-        'specialite_id',
-        'profession_id'
+        'profil',
+        'clinique'
     ];
 
     /**
@@ -50,19 +50,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function specialites()
-    {
-        return $this->belongsTo(Specialite::class);
-    }
-    public function professions()
-    {
-        return $this->belongsTo(Profession::class);
-    }
-
-    public function rdvs()
-    {
-        return $this->hasMany(Rdv::class);
-    }
-
 }

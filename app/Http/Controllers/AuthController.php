@@ -32,7 +32,8 @@ class AuthController extends Controller
             'phone'=>$attrs['phone'],
             'datenaissance'=>$attrs['datenaissance'],
             'email'=>$attrs['email'],
-            'password'=>bcrypt($attrs['password'])
+            'password'=>bcrypt($attrs['password']),
+            'profil' => 'patient'
         ]);
 
         //return user & token in response

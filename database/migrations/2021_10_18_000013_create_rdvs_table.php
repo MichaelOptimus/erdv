@@ -33,17 +33,7 @@ class CreateRdvsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        schema::table('rdvs', function (Blueprint $table){
-
-            $table->dropConstrainedForeignId('clinique_id');
-            $table->dropConstrainedForeignId('user_id');
-        });
-
+    public function down() {
         Schema::dropIfExists('rdvs');
-
-
-
     }
 }
