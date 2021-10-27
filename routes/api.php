@@ -24,26 +24,23 @@ Route::post('/register',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
 
 //Protected Routes
-Route::group(['middleware'=>['auth:sanctum']],function()
-{
-    //User
+Route::group(['middleware'=>['auth:sanctum']], function() {
+        //User
+        Route::get('/user',[AuthController::class,'user']);
+        Route::post('/logout',[AuthController::class,'logout']);
 
-    Route::get('/user',[AuthController::class,'user']);
-    Route::post('/logout',[AuthController::class,'logout']);
+        //Rendez-vous
+        Route::get('/rendezvous',[RdvController::class,'index']); // all rendezvous
+        Route::post('/rendezvous',[RdvController::class,'store']); //create rendezvous
+        //Route::get('/rendezvous/{id}',[RdvController::class,'show']); // get single rendezvous
+        //Route::put('/rendezvous/{id}',[RdvController::class,'update']); // update rendezvous
+        Route::delete('/rendezvous/{id}',[RdvController::class,'destroy']); // delete rendezvous
 
-    //Rendez-vous
-    Route::get('/rendezvous',[RdvController::class,'index']); // all rendezvous
-    Route::post('/rendezvous',[RdvController::class,'store']); //create rendezvous
-    //Route::get('/rendezvous/{id}',[RdvController::class,'show']); // get single rendezvous
-    //Route::put('/rendezvous/{id}',[RdvController::class,'update']); // update rendezvous
-    Route::delete('/rendezvous/{id}',[RdvController::class,'destroy']); // delete rendezvous
-
-    //Clinique
-    Route::get('/clinique',[CliniqueController::class,'index']); // all clinique
-   // Route::post('/clinique',[CliniqueController::class,'store']); //create rendezvous
-    //Route::get('/rendezvous/{id}',[RdvController::class,'show']); // get single rendezvous
-    //Route::put('/rendezvous/{id}',[RdvController::class,'update']); // update rendezvous
-    //Route::delete('/clinique/{id}',[CliniqueController::class,'destroy']); // delete rendezvous
-
-}
+        //Clinique
+        Route::get('/clinique',[CliniqueController::class,'index']); // all clinique
+        // Route::post('/clinique',[CliniqueController::class,'store']); //create rendezvous
+        //Route::get('/rendezvous/{id}',[RdvController::class,'show']); // get single rendezvous
+        //Route::put('/rendezvous/{id}',[RdvController::class,'update']); // update rendezvous
+        //Route::delete('/clinique/{id}',[CliniqueController::class,'destroy']); // delete rendezvous
+    }
 );

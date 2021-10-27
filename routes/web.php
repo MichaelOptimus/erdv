@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-Route::get('/clinique',function () {
-    return view('clinique');
-});
+Route::get('/dashboard', function () {
+    if(Auth::user()->profil === 'admin') {
+        return 'Admin';
+    } elseif (Auth::user()->profil === 'gestion') {
+        return 'Gestion';
+    } else {
+        return view('auth.login');
+    }
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';

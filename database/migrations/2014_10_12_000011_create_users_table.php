@@ -19,20 +19,13 @@ class CreateUsersTable extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->string('genre');
-            $table->string('phone');
+            $table->string('phone')->unique();
             $table->date('datenaissance');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('profil', ['admin', 'gestion', 'patient']);
+            $table->integer('clinique')->nullable()->default(null);
             $table->rememberToken();
-            /* $table->unsignedBigInteger('profession_id')->nullable();
-            $table->foreign('profession_id')->references('id')->on('professions');
-            $table->unsignedBigInteger('specialite_id')->nullable();
-            $table->foreign('specialite_id')->references('id')->on('specialites');*/
-
-            $table->foreignId('profession_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
-
-            $table->foreignId('specialite_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
 
         });
