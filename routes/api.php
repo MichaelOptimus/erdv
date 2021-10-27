@@ -4,7 +4,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RdvController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CliniqueController;
 
 
 /*
@@ -36,11 +35,5 @@ Route::group(['middleware'=>['auth:sanctum']], function() {
         //Route::put('/rendezvous/{id}',[RdvController::class,'update']); // update rendezvous
         Route::delete('/rendezvous/{id}',[RdvController::class,'destroy']); // delete rendezvous
 
-        //Clinique
-        Route::get('/clinique',[CliniqueController::class,'index']); // all clinique
-        // Route::post('/clinique',[CliniqueController::class,'store']); //create rendezvous
-        //Route::get('/rendezvous/{id}',[RdvController::class,'show']); // get single rendezvous
-        //Route::put('/rendezvous/{id}',[RdvController::class,'update']); // update rendezvous
-        //Route::delete('/clinique/{id}',[CliniqueController::class,'destroy']); // delete rendezvous
     }
 );

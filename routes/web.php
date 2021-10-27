@@ -19,13 +19,36 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    if(Auth::user()->profil === 'admin') {
-        return 'Admin';
-    } elseif (Auth::user()->profil === 'gestion') {
-        return 'Gestion';
-    } else {
-        return view('auth.login');
-    }
+    return view('dashboard');    
 })->middleware(['auth'])->name('dashboard');
+
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/welcome', 'App\Http\Controllers\WelcomeController@index');
+});
+
+
+Route::prefix('admin')->group(function () {
+    Route::get('/', function () {
+        return view('admin.dashboard');
+    });
+
+    Route::get('/users', function () {
+        return view('admin.user.users');
+    });
+    Route::get('/new-user', function () {
+        return view('admin.user.newuser');
+    });
+    Route::get('/edit-user', function () {
+        return view('admin.user.edituser');
+    });
+});
+
+Route::prefix('gestion')->group(function () {
+   Route::get('/', function () {
+        return view('gestion.dashboard');
+    });
+});
+
 
 require __DIR__.'/auth.php';
