@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,19 +28,12 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 Route::prefix('admin')->group(function () {
-    Route::get('/', function () {
-        return view('admin.dashboard');
-    });
+    Route::get('/', 'App\Http\Controllers\AdminControler@index');
 
-    Route::get('/users', function () {
-        return view('admin.user.users');
-    });
-    Route::get('/new-user', function () {
-        return view('admin.user.newuser');
-    });
-    Route::get('/edit-user', function () {
-        return view('admin.user.edituser');
-    });
+
+    Route::get('/users', 'App\Http\Controllers\AdminControler@getAdmins');
+    Route::get('/new-user', 'App\Http\Controllers\AdminControler@newUser');
+    Route::get('/edit-user/{id}', 'App\Http\Controllers\AdminControler@editUser');
 });
 
 Route::prefix('gestion')->group(function () {
