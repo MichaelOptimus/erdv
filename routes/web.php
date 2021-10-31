@@ -31,10 +31,14 @@ Route::prefix('admin')->group(function () {
     Route::get('/', 'App\Http\Controllers\AdminControler@index');
 
 
-    Route::get('/users', 'App\Http\Controllers\AdminControler@getAdmins');
+    Route::get('/users', 'App\Http\Controllers\AdminControler@getAdmins')->name('listeAdmin');
     Route::get('/new-user', 'App\Http\Controllers\AdminControler@newUser');
     Route::get('/edit-user/{id}', 'App\Http\Controllers\AdminControler@editUser');
+
+    Route::post('/saveAdmin', 'App\Http\Controllers\AdminControler@setAdmin')->name('saveAdmin');
 });
+
+
 
 Route::prefix('gestion')->group(function () {
    Route::get('/', function () {
