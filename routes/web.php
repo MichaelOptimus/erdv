@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,13 +18,29 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    if(Auth::user()->profil === 'admin') {
-        return 'Admin';
-    } elseif (Auth::user()->profil === 'gestion') {
-        return 'Gestion';
-    } else {
-        return view('auth.login');
-    }
+    return view('dashboard');    
 })->middleware(['auth'])->name('dashboard');
+
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/welcome', 'App\Http\Controllers\WelcomeController@index');
+});
+
+
+Route::prefix('admin')->group(function () {
+    Route::get('/', 'App\Http\Controllers\AdminControler@index');
+
+
+    Route::get('/users', 'App\Http\Controllers\AdminControler@getAdmins');
+    Route::get('/new-user', 'App\Http\Controllers\AdminControler@newUser');
+    Route::get('/edit-user/{id}', 'App\Http\Controllers\AdminControler@editUser');
+});
+
+Route::prefix('gestion')->group(function () {
+   Route::get('/', function () {
+        return view('gestion.dashboard');
+    });
+});
+
 
 require __DIR__.'/auth.php';
