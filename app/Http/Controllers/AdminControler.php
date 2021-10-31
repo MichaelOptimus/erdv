@@ -48,6 +48,11 @@ class AdminControler extends Controller {
             'profil' => 'admin',
         ]);
 
-        return redirect()->route('listeAdmin');
+        return redirect()->route('listeAdmin')->with('message', 'Nouvel administrateur ajouté');
+    }
+
+
+    public function getCliniques() {
+        
     }
 }

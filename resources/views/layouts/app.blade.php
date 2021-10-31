@@ -47,7 +47,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                                        <a href="{{ url('/admin/cliniques') }}" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
                                         <span class="text-sm font-medium">Cliniques</span>
                                         </a>
                                     </li>

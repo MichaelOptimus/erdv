@@ -3,7 +3,7 @@
         <div class="w-full">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-10">
                 <div class="p-6 bg-white border-b border-gray-200">
-                   <h3> Gestion des Administrateurs</h3>
+                   <h3> Gestion des Cliniques</h3>
                 </div>
             </div>
             @if(session()->has('message'))
@@ -13,8 +13,8 @@
                 </div>
             @endif
             <div class="mb-4">
-                <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2" href="{{ url('/admin/new-user') }}" >
-                 Nouvel Administrateur
+                <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2" href="{{ url('/admin/new-clinqiue') }}" >
+                 Nouvelle Clinique
                  </a>
             </div>
             <div class="bg-white overflow-hidden shadow-sm">
@@ -23,21 +23,19 @@
                         <thead>
                             <tr class="bg-primary text-white">
                                 <th>ID</th>
-                                <th>Nom(s)</th>
-                                <th>Prénom(s)</th>
-                                <th>Genre</th>
+                                <th>Nom</th>
+                                <th>Addresse</th>
                                 <th>Téléphone</th>
                                 <th>Email</th>
                                 <th class="text-center">Options</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($admins as $item)
+                            @foreach ($cliniques as $item)
                             <tr>
                                 <td> {{ $item->id }} </td>
                                 <td> {{ $item->nom }} </td>
-                                <td> {{ $item->prenom }} </td>
-                                <td> {{ $item->genre}} </td>
+                                <td> {{ $item->addresse }} </td>
                                 <td> {{$item->phone }} </td>
                                 <td> {{ $item->email }} </td>
                                 <td class="text-center">
