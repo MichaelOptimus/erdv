@@ -37,6 +37,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/saveAdmin', 'App\Http\Controllers\AdminControler@setAdmin')->name('saveAdmin');
     
     Route::get('/cliniques', 'App\Http\Controllers\CliniqueController@index')->name('cliniques');
+    Route::get('/clinique/{id}', 'App\Http\Controllers\CliniqueController@show')->name('clinique');
     Route::get('/new-clinqiue', 'App\Http\Controllers\CliniqueController@create');
     Route::post('/saveClinique', 'App\Http\Controllers\CliniqueController@store')->name('saveClinique');
 

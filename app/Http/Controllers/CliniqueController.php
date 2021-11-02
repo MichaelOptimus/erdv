@@ -35,8 +35,7 @@ class CliniqueController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         // return $request;
         $request->validate([
             'nom' => ['required', 'string', 'max:255'],
@@ -51,7 +50,6 @@ class CliniqueController extends Controller
             'phone' => $request->phone,
             'email' => $request->email,
         ]);
-
         return redirect()->route('cliniques')->with('message', 'Nouvelle Clinique ajoutée');
     }
 
@@ -61,9 +59,9 @@ class CliniqueController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show($id) {
+        $clinique = DB::table('cliniques')->where('id', $id)->get();
+        return view('admin.clinique.clinique-detail', ['clinique' => $clinique[0]]);
     }
 
     /**

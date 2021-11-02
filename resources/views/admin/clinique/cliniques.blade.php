@@ -19,7 +19,7 @@
             </div>
             <div class="bg-white overflow-hidden shadow-sm">
                 <div class="bg-white border-b border-gray-200 p-4">
-                        <table class="table table-hover">
+                    <table class="table table-hover">
                         <thead>
                             <tr class="bg-primary text-white">
                                 <th>ID</th>
@@ -39,7 +39,7 @@
                                 <td> {{$item->phone }} </td>
                                 <td> {{ $item->email }} </td>
                                 <td class="text-center">
-                                    <a href="{{ url('/admin/edit-user/' . $item->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                    <a href="{{ url('/admin/clinique/' . $item->id) }}" class="btn btn-primary btn-sm">Afficher</a>
                                 </td>
                             </tr>
                             @endforeach
