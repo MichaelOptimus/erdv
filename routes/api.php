@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RdvController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\APIController;
 
 
 /*
@@ -37,3 +38,11 @@ Route::group(['middleware'=>['auth:sanctum']], function() {
 
     }
 );
+
+
+Route::get('/cliniques','App\Http\Controllers\APIController@getCliniques');
+
+
+
+
+
