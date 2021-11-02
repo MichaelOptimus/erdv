@@ -41,6 +41,7 @@ Route::group(['middleware'=>['auth:sanctum']], function() {
 
 
 Route::get('/cliniques','App\Http\Controllers\APIController@getCliniques');
+Route::post('/new-patient','App\Http\Controllers\APIController@registerPatient');
 
 
 
