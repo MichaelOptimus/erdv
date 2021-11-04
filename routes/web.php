@@ -46,9 +46,10 @@ Route::prefix('admin')->group(function () {
 
 
 Route::prefix('gestion')->group(function () {
-   Route::get('/', function () {
-        return view('gestion.dashboard');
-    });
+    Route::get('/', 'App\Http\Controllers\GestionController@index');
+    Route::get('/users', 'App\Http\Controllers\GestionController@getUsers')->name('listeGestion');
+    Route::get('/new-user', 'App\Http\Controllers\GestionController@newUser');
+    Route::post('/saveGestionnaire', 'App\Http\Controllers\GestionController@setGestionnaire')->name('saveGestionnaire');
 });
 
 
