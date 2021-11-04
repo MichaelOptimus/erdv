@@ -47,9 +47,13 @@ Route::prefix('admin')->group(function () {
 
 Route::prefix('gestion')->group(function () {
     Route::get('/', 'App\Http\Controllers\GestionController@index');
+
     Route::get('/users', 'App\Http\Controllers\GestionController@getUsers')->name('listeGestion');
     Route::get('/new-user', 'App\Http\Controllers\GestionController@newUser');
     Route::post('/saveGestionnaire', 'App\Http\Controllers\GestionController@setGestionnaire')->name('saveGestionnaire');
+
+    Route::get('/specialite', 'App\Http\Controllers\GestionController@getSpecialites')->name('listeSpecialite');
+    Route::post('/specialite', 'App\Http\Controllers\GestionController@storeSpecialite')->name('saveSpecialite');
 });
 
 

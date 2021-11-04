@@ -41,7 +41,7 @@
                                 <td> {{$item->phone }} </td>
                                 <td> {{ $item->email }} </td>
                                 <td class="text-center">
-                                    <a href="{{ url('/admin/edit-user/' . $item->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                    <a class="btn btn-primary btn-sm">Edit</a>
                                 </td>
                             </tr>
                             @endforeach

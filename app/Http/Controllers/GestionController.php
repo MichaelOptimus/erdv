@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Specialite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -47,5 +48,26 @@ class GestionController extends Controller {
         ]);
 
         return redirect()->route('listeGestion')->with('message', 'Nouveau gestionnaire ajouté');
+    }
+
+    public function getSpecialites() {
+        $user = Auth::user();
+        $spec = DB::table('specialites')->where('clinique', $user->clinique)->get();
+        // var_dump($spec); die;
+       return view('gestion.specialite.liste', ['specialites' => $spec]); 
+    }
+
+    public function storeSpecialite(Request $request) {
+        $userCon = Auth::user();
+        $request->validate([
+            'libelle' => ['required', 'string', 'max:255'],
+        ]);
+
+        $spec = Specialite::create([
+            "libelle" => $request->libelle,
+            "clinique" => $userCon->clinique
+        ]);
+
+        return redirect()->route('listeSpecialite')->with('message', 'Nouvelle spécialité ajoutée');
     }
 }

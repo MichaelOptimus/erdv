@@ -14,10 +14,12 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/fontawesome/css/all.min.css') }}">
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="{{ asset('js/bootstrap.js') }}" defer></script>
+        <script src="{{ asset('js/bootstrap.bundle.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -31,17 +33,17 @@
                                 <ul class="flex flex-col pl-8 pr-8 pt-16">
                                     <li>
                                         <a href="{{ url('/admin') }}" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
-                                        <span class="text-sm font-medium">Tableau de Bord</span>
+                                        <span class=""><i class="fa fa-tachometer-alt"></i> Tableau de Bord</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="{{ url('/admin/users') }}" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
-                                        <span class="text-sm font-medium">Administrateurs</span>
+                                        <span class=""><i class="fa fa-user-shield"></i> Administrateurs</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="{{ url('/admin/cliniques') }}" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
-                                        <span class="text-sm font-medium">Cliniques</span>
+                                        <span class=""><i class="fa fa-clinic-medical"></i>Cliniques</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -55,22 +57,22 @@
                                 <ul class="flex flex-col pl-8 pr-8 pt-16">
                                     <li>
                                         <a href="{{ url('/gestion') }}" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
-                                        <span class="text-sm font-medium">Tableau de Bord</span>
+                                        <span class=""><i class="fa fa-tachometer-alt"></i> Tableau de Bord</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="{{ url('/gestion/users') }}" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
-                                        <span class="text-sm font-medium">Gestionnaires</span>
+                                        <span class=""><i class="fa fa-user-shield"></i> Gestionnaires</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
-                                        <span class="text-sm font-medium">Rendez-vous</span>
+                                        <span class=""><i class="fa fa-calendar-check"></i> Rendez-vous</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
-                                        <span class="text-sm font-medium">Spécialités</span>
+                                        <a href="{{ url('/gestion/specialite') }}" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                                        <span class=""> <i class="fa fa-medkit"></i> Spécialités</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -78,7 +80,7 @@
                         </div>
                     </div>                  
                 @endif
-                <div class="flex flex-col justify-between w-5/6 ml-40">
+                <div class="flex flex-col justify-between w-5/6 ml-44">
                      {{ $slot }}
                 </div>
             </main>
