@@ -6,6 +6,12 @@
                    <h3> Gestion des Administrateurs</h3>
                 </div>
             </div>
+            @if(session()->has('message'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{ session()->get('message') }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <div class="mb-4">
                 <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2" href="{{ url('/admin/new-user') }}" >
                  Nouvel Administrateur
