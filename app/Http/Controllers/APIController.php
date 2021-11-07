@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class APIController extends Controller {
     
@@ -43,5 +44,25 @@ class APIController extends Controller {
             'profil' => 'patient',
         ]);
         return $user;
+    }
+
+
+    public function login(Request $request) {
+
+        $request->validate([
+            "email" => ['required'],
+            "password" => ['required']
+        ]);
+
+        $credentials = $request->only('email', 'password');
+         if (Auth::attempt($credentials)) {
+             $user = Auth::user();
+            if($user->profil === "patient") {
+                return $user;
+            } else {
+                return 1;
+            }
+        }
+        return 0;
     }
 }
