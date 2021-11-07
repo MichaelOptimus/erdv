@@ -43,7 +43,7 @@
                                     </li>
                                     <li>
                                         <a href="{{ url('/admin/cliniques') }}" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
-                                        <span class=""><i class="fa fa-clinic-medical"></i>Cliniques</span>
+                                        <span class=""><i class="fa fa-clinic-medical"></i> Cliniques</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -66,7 +66,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                                        <a href="{{ url('/gestion/rendezvous') }}" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
                                         <span class=""><i class="fa fa-calendar-check"></i> Rendez-vous</span>
                                         </a>
                                     </li>
