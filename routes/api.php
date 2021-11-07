@@ -45,6 +45,7 @@ Route::post('/new-patient','App\Http\Controllers\APIController@registerPatient')
 
 
 Route::post('/login', 'App\Http\Controllers\APIController@login');
+Route::post('/set-rendez-vous', 'App\Http\Controllers\APIController@setRendezvous');
 
 
 
