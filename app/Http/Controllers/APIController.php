@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\RendezVous;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -64,5 +65,16 @@ class APIController extends Controller {
             }
         }
         return 0;
+    }
+
+    public function setRendezvous(Request $request) {
+        $rdv = RendezVous::create([
+            'commentaire' => $request->commentaire,
+            'user' => $request->user,
+            'clinique' => $request->clinique,
+            'specialite' => $request->specialite,
+        ]);
+
+        return $rdv;
     }
 }
