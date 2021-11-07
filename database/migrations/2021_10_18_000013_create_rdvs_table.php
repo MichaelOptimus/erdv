@@ -15,7 +15,7 @@ class CreateRdvsTable extends Migration
     {
         Schema::create('rdvs', function (Blueprint $table) {
             $table->id();
-            $table->text('commentaire');
+            $table->text('commentaire')->nullable();
             $table->enum('status', ['attente', 'confirme', 'effectue', 'annule'])->default('attente');
             $table->date('date_rdv')->nullable()->default(null);
             $table->time('heure_rdv')->nullable()->default(null);
