@@ -74,7 +74,6 @@ class APIController extends Controller {
             'clinique' => $request->clinique,
             'specialite' => $request->specialite,
         ]);
-
         return $rdv;
     }
 }

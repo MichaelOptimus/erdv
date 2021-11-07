@@ -40,6 +40,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/clinique/{id}', 'App\Http\Controllers\CliniqueController@show')->name('clinique');
     Route::get('/new-clinqiue', 'App\Http\Controllers\CliniqueController@create');
     Route::post('/saveClinique', 'App\Http\Controllers\CliniqueController@store')->name('saveClinique');
+    Route::post('/saveGestion', 'App\Http\Controllers\CliniqueController@storeUser')->name('saveGestion');
 
 });
 

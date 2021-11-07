@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Clinique;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class CliniqueController extends Controller
 {
@@ -53,6 +55,33 @@ class CliniqueController extends Controller
         return redirect()->route('cliniques')->with('message', 'Nouvelle Clinique ajoutée');
     }
 
+    public function storeUser(Request $request) {
+        // return $request;
+        $user = $request->validate([
+            'nom' => ['required', 'string', 'max:255'],
+            'prenom' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:9'],
+            'datenaissance' => ['required'],
+            'genre' => ['required', 'string'],
+            'email' => ['required', 'string'],
+            'password' => ['required', 'string'],
+            'clinique' => ['required', 'string'],
+        ]);
+
+        $user = User::create([
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'phone' => $request->phone,
+            'genre' => $request->genre,
+            'email' => $request->email,
+            'datenaissance' => $request->datenaissance,
+            'password' => $request->password,
+            'profil' => 'gestion',
+            'clinique' => $request->clinique,
+        ]);
+        return redirect()->route('clinique', $request->clinique)->with('message', 'Nouveau gestionnaire ajouté.');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -61,7 +90,8 @@ class CliniqueController extends Controller
      */
     public function show($id) {
         $clinique = DB::table('cliniques')->where('id', $id)->get();
-        return view('admin.clinique.clinique-detail', ['clinique' => $clinique[0]]);
+        $gestionnaire = DB::table('users')->where('clinique', $id)->get();
+        return view('admin.clinique.clinique-detail', ['clinique' => $clinique[0], 'gestionnaires' => $gestionnaire]);
     }
 
     /**

@@ -32,7 +32,7 @@
                             </div>
                             <div class="flex-1 mb-3">
                                 <label for="">Téléphone:</label>
-                                <x-input id="name" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required />
+                                <x-input id="name" class="block mt-1 w-full" type="text" name="phone" maxlength="9" :value="old('phone')" required />
                                 {{ $errors->first('phone') }}
                             </div>
                         </div>
