@@ -44,6 +44,9 @@ Route::get('/cliniques','App\Http\Controllers\APIController@getCliniques');
 Route::post('/new-patient','App\Http\Controllers\APIController@registerPatient');
 
 
+Route::post('/login', 'App\Http\Controllers\APIController@login');
+
+
 
 
 
