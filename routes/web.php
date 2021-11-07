@@ -55,6 +55,8 @@ Route::prefix('gestion')->group(function () {
 
     Route::get('/specialite', 'App\Http\Controllers\GestionController@getSpecialites')->name('listeSpecialite');
     Route::post('/specialite', 'App\Http\Controllers\GestionController@storeSpecialite')->name('saveSpecialite');
+
+    Route::get('/rendezvous', 'App\Http\Controllers\RendezVousController@index')->name('liste-rendezvous');
 });
 
 

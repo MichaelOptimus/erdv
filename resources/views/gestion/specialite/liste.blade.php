@@ -19,7 +19,7 @@
             </div>
             <div class="row">
                  @foreach ($specialites as $item)
-                <div class="col-3">
+                <div class="col-3 mb-3">
                     <div class="card rounded-lg">
                         <div class="card-body text-center">
                             <i class="fa fa-3x fa-hand-holding-medical mb-4"></i> <br>

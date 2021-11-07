@@ -75,7 +75,7 @@ class CliniqueController extends Controller
             'genre' => $request->genre,
             'email' => $request->email,
             'datenaissance' => $request->datenaissance,
-            'password' => $request->password,
+            'password' => bcrypt($request->password),
             'profil' => 'gestion',
             'clinique' => $request->clinique,
         ]);
