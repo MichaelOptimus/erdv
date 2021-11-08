@@ -44,9 +44,7 @@ Route::prefix('admin')->group(function () {
 
 });
 
-
-
-Route::prefix('gestion')->group(function () {
+    Route::prefix('gestion')->group(function () {
     Route::get('/', 'App\Http\Controllers\GestionController@index');
 
     Route::get('/users', 'App\Http\Controllers\GestionController@getUsers')->name('listeGestion');
@@ -55,6 +53,10 @@ Route::prefix('gestion')->group(function () {
 
     Route::get('/specialite', 'App\Http\Controllers\GestionController@getSpecialites')->name('listeSpecialite');
     Route::post('/specialite', 'App\Http\Controllers\GestionController@storeSpecialite')->name('saveSpecialite');
+
+    Route::get('/rendezvous', 'App\Http\Controllers\RendezVousController@index')->name('liste-rendezvous');
+    Route::get('/edit-user/{id}', 'App\Http\Controllers\GestionController@editGestionnaire')->name('edit-gestionnaire');
+    Route::post('/update-user/{id}', 'App\Http\Controllers\GestionController@updateGestion')->name('upadte-gestionnaire');
 });
 
 
