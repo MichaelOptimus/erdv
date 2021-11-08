@@ -44,9 +44,7 @@ Route::prefix('admin')->group(function () {
 
 });
 
-
-
-Route::prefix('gestion')->group(function () {
+    Route::prefix('gestion')->group(function () {
     Route::get('/', 'App\Http\Controllers\GestionController@index');
 
     Route::get('/users', 'App\Http\Controllers\GestionController@getUsers')->name('listeGestion');
