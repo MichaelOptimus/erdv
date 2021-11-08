@@ -101,4 +101,18 @@ class GestionController extends Controller {
         $userSelected = DB::table('users')->where('id', $id)->get();
         return redirect()->route('edit-gestionnaire', $id)->with('message', 'Mise à jour effectuée avec succès');
     }
+   
+    public function editSpecialite(Request $request, $id) {
+
+          $request->validate([
+            'libelle' => ['required', 'string', 'max:255'],
+        ]);
+
+        $user = DB::table("specialites")
+        ->where('id', $id)
+        ->update([
+            'libelle' => $request->libelle,
+        ]);
+        return redirect()->route('listeSpecialite')->with('message', 'Mise à jour effectuée avec succès');
+    }
 }

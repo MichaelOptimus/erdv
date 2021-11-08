@@ -43,7 +43,6 @@
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <a href="{{ route('edit-gestionnaire', $item->id) }}" class="btn btn-outline-primary btn-sm"><i class="fa fa-user-edit"></i></a>
-                                        <a class="btn btn-outline-primary btn-sm"><i class="fa fa-search"></i></a>
                                     </div>
                                 </td>
                             </tr>

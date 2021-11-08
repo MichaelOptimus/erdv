@@ -18,12 +18,42 @@
                  </a>
             </div>
             <div class="row">
-                 @foreach ($specialites as $item)
+                @foreach ($specialites as $item)
                 <div class="col-3 mb-3">
                     <div class="card rounded-lg">
                         <div class="card-body text-center">
                             <i class="fa fa-3x fa-hand-holding-medical mb-4"></i> <br>
                             <h5>{{ $item->libelle }}</h5>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a data-bs-toggle="modal" data-bs-target="#editSpec_{{ $item->id }}" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="editSpec_{{ $item->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Modifier Spécialité</h5>
+                            </div>
+                            <form action="{{ route('editSpecialite', $item->id) }}" method="POST">
+                                @csrf
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label for="">Libellé</label>
+                                            <x-input id="name" class="block mt-1 w-full" type="text" name="libelle" value="{{ $item->libelle }} " required autofocus />
+                                            {{ $errors->first('libelle') }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+                                    <button type="submit" class="btn btn-success">Mettre à jour</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

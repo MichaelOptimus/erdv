@@ -55,6 +55,7 @@ Route::prefix('gestion')->group(function () {
 
     Route::get('/specialite', 'App\Http\Controllers\GestionController@getSpecialites')->name('listeSpecialite');
     Route::post('/specialite', 'App\Http\Controllers\GestionController@storeSpecialite')->name('saveSpecialite');
+    Route::post('/edit-specialite/{id}', 'App\Http\Controllers\GestionController@editSpecialite')->name('editSpecialite');
 
     Route::get('/rendezvous', 'App\Http\Controllers\RendezVousController@index')->name('liste-rendezvous');
     Route::get('/edit-user/{id}', 'App\Http\Controllers\GestionController@editGestionnaire')->name('edit-gestionnaire');
