@@ -30,6 +30,7 @@ class GestionController extends Controller {
             'nom' => ['required', 'string', 'max:255'],
             'prenom' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:255'],
+            'genre' => ['required', 'string'],
             'datenaissance' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required'],
@@ -69,5 +70,35 @@ class GestionController extends Controller {
         ]);
 
         return redirect()->route('listeSpecialite')->with('message', 'Nouvelle spécialité ajoutée');
+    }
+
+
+    public function editGestionnaire($id) {
+        $user = DB::table('users')->where('id', $id)->get();
+        return view('gestion.user.edit-user', ['user' => $user[0]]);
+    }
+
+    public function updateGestion(Request $request, $id) {
+
+          $request->validate([
+            'nom' => ['required', 'string', 'max:255'],
+            'prenom' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:255'],
+            'datenaissance' => ['required'],
+            'genre' => ['required'],
+        ]);
+
+        $user = DB::table("users")
+        ->where('id', $id)
+        ->update([
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'phone' => $request->phone,
+            'datenaissance' => $request->datenaissance,
+            'genre' => $request->genre,
+        ]);
+
+        $userSelected = DB::table('users')->where('id', $id)->get();
+        return redirect()->route('edit-gestionnaire', $id)->with('message', 'Mise à jour effectuée avec succès');
     }
 }
