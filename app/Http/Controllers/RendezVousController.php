@@ -2,19 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RendezVous;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-class RendezVousController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
+class RendezVousController extends Controller {
+
+
+    public function index() {
         $user = Auth::user();
         $rendezvous = DB::table('rdvs')->where('clinique', $user->clinique)->get();
         foreach ($rendezvous as $key) {
@@ -28,69 +24,71 @@ class RendezVousController extends Controller
         return view('gestion.rendezvous.liste-rendezvous', ['rendezvous' => $rendezvous]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    public function confirmRdv(Request $request) {
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $rdv = $request->validate([
+            'id' => ['required'],
+            'date_rdv' => ['required'],
+            'heure_rdv' => ['required'],
+        ]);
+        DB::table("rdvs")
+        ->where('id', $rdv['id'])
+        ->update([
+            'status' => 'confirme',
+            'date_rdv' => $rdv['date_rdv'],
+            'heure_rdv' => $rdv['heure_rdv']
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $user = Auth::user();
+        $rendezvous = DB::table('rdvs')->where('clinique', $user->clinique)->get();
+        foreach ($rendezvous as $key) {
+            $user = DB::table('users')->where('id', $key->user)->get();
+            $key->user = $user[0];
+        }
+        foreach ($rendezvous as $key) {
+            $specialite = DB::table('specialites')->where('id', $key->specialite)->get();
+            $key->specialite = $specialite[0];
+        }
+        return redirect()->route('liste-rendezvous', ['rendezvous' => $rendezvous])->with('message', 'Mise à jour effectuée avec succès.');
     }
+    
+    public function cancelRdv($id) {
+        DB::table("rdvs")
+        ->where('id', $id)
+        ->update([
+            'status' => 'annule',
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        $user = Auth::user();
+        $rendezvous = DB::table('rdvs')->where('clinique', $user->clinique)->get();
+        foreach ($rendezvous as $key) {
+            $user = DB::table('users')->where('id', $key->user)->get();
+            $key->user = $user[0];
+        }
+        foreach ($rendezvous as $key) {
+            $specialite = DB::table('specialites')->where('id', $key->specialite)->get();
+            $key->specialite = $specialite[0];
+        }
+        return redirect()->route('liste-rendezvous', ['rendezvous' => $rendezvous])->with('message', 'Mise à jour effectuée avec succès.');
     }
+    
+    public function doneRdv($id) {
+        DB::table("rdvs")
+        ->where('id', $id)
+        ->update([
+            'status' => 'effectue',
+        ]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $user = Auth::user();
+        $rendezvous = DB::table('rdvs')->where('clinique', $user->clinique)->get();
+        foreach ($rendezvous as $key) {
+            $user = DB::table('users')->where('id', $key->user)->get();
+            $key->user = $user[0];
+        }
+        foreach ($rendezvous as $key) {
+            $specialite = DB::table('specialites')->where('id', $key->specialite)->get();
+            $key->specialite = $specialite[0];
+        }
+        return redirect()->route('liste-rendezvous', ['rendezvous' => $rendezvous])->with('message', 'Mise à jour effectuée avec succès.');
     }
 }

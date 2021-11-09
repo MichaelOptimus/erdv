@@ -58,6 +58,10 @@ Route::prefix('gestion')->group(function () {
     Route::post('/edit-specialite/{id}', 'App\Http\Controllers\GestionController@editSpecialite')->name('editSpecialite');
 
     Route::get('/rendezvous', 'App\Http\Controllers\RendezVousController@index')->name('liste-rendezvous');
+    Route::post('/confirm-rdv', 'App\Http\Controllers\RendezVousController@confirmRdv')->name('confirmRDV');
+    Route::get('/annuler-rdv/{id}', 'App\Http\Controllers\RendezVousController@cancelRdv')->name('cancelRDV');
+    Route::get('/effectuer-rdv/{id}', 'App\Http\Controllers\RendezVousController@doneRdv')->name('doneRDV');
+
     Route::get('/edit-user/{id}', 'App\Http\Controllers\GestionController@editGestionnaire')->name('edit-gestionnaire');
     Route::post('/update-user/{id}', 'App\Http\Controllers\GestionController@updateGestion')->name('upadte-gestionnaire');
 });
